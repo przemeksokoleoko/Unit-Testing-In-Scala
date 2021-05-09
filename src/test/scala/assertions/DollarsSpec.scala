@@ -48,14 +48,16 @@ class DollarsSpec extends AnyFlatSpec {
     it should "correctly identify that $4 == $4" in {
         val fourDollars = Dollars(4)
 
-        assertResult(true) {
+        assertResult(true, "$4 == $4") {
             fourDollars === fourDollars
         }
     }
 
     it should "throw an exception when an invalid integer is provided to create Dollars" in {
-        assertThrows[ArithmeticException] {
-            Dollars(10 / 0)
+        withClue("expected ArithmeticException") {
+            assertThrows[ArithmeticException] {
+                Dollars(10 / 0)
+            }
         }
     }
 
@@ -67,10 +69,11 @@ class DollarsSpec extends AnyFlatSpec {
         }
     }
 
+    //might be useful in integration tests when API call returns empty result
     it should "have every dollar more than 0 for empty (test cancelled)" in {
         val dollars : List[Dollars] = List.empty
 
-        assume(dollars.nonEmpty)
+        assume(dollars.nonEmpty, "The list returned by API should not be empty")
 
         dollars.foreach{dollar =>
             assert(dollar.amount > 0)
