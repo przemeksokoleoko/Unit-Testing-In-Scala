@@ -18,4 +18,10 @@ class EmailSpec extends AnyFlatSpec {
             Email("foo_foo@foo.com").localPart
         }
     }
+
+    it should "throw an exception when a string does not contain '@' symbol" in {
+        assertThrows[Exception] {
+            Email("foo.foo.com")
+        }
+    }
 }

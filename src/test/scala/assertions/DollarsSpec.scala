@@ -2,7 +2,6 @@ package assertions
 
 import org.scalatest.flatspec.AnyFlatSpec
 import com.h2.entities.Dollars
-import scala.util.control
 
 class DollarsSpec extends AnyFlatSpec {
   
@@ -54,13 +53,9 @@ class DollarsSpec extends AnyFlatSpec {
         }
     }
 
-    //this should work but it does not compile with error:
-    //found   : org.scalatest.Assertion
-    //(which expands to)  org.scalatest.compatible.Assertion
-    //required: Int
-    //it should "throw an exception when an invalid intiger is provided to create Dollars" {
-    //    assertThrows[ArithmeticException] {
-    //        Dollars(10 / 0)
-    //    }
-    //}
+    it should "throw an exception when an invalid integer is provided to create Dollars" in {
+        assertThrows[ArithmeticException] {
+            Dollars(10 / 0)
+        }
+    }
 }
