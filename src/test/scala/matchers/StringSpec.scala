@@ -1,8 +1,6 @@
 package matchers
 
 import com.h2.services.CustomerService
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.flatspec.AnyFlatSpec
 
 class StringSpecextends extends UnitSpec {
     val customerService: CustomerService = new CustomerService {}

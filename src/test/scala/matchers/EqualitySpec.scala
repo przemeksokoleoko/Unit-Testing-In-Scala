@@ -1,7 +1,5 @@
 package matchers
 
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
 import com.h2.services.Currency
 
 class EqualitySpec extends UnitSpec {
