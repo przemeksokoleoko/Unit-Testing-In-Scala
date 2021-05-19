@@ -4,4 +4,6 @@ version := "0.1"
 
 scalaVersion := "2.13.1"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.13" % "3.2.7" % "test"
+libraryDependencies += "org.scalamock" %% "scalamock" % "5.1.0" % Test
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.0" % Test
+
