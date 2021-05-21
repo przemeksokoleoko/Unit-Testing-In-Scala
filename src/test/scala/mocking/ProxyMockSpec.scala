@@ -5,12 +5,13 @@ import org.scalamock.scalatest.MockFactory
 import com.h2.services.AccountService
 import java.util.UUID
 import com.h2.entities.Dollars
+import tags.{Fast, Slow}
 
 class ProxyMockSpec extends UnitSpec with MockFactory {
     
     behavior of "AccountService with mocks"
 
-    it should "mock a Trait" in {
+    it should "mock a Trait" taggedAs(Slow) in {
         val mocked = mock[AccountService]
 
         val customerId = UUID.randomUUID
@@ -22,7 +23,7 @@ class ProxyMockSpec extends UnitSpec with MockFactory {
         mocked.openDepositAccount(customerId, productId, tenDollars)
     }
 
-    it should "mock return value" in {
+    it should "mock return value" taggedAs(Fast) in {
         val mocked = mock[AccountService]
 
         val customerId = UUID.randomUUID
