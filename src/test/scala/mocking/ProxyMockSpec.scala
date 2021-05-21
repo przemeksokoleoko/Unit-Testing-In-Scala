@@ -56,4 +56,15 @@ class ProxyMockSpec extends UnitSpec with MockFactory {
 
         mocked.openDepositAccount(customerId, UUID.randomUUID(), Dollars(100))
     }
+
+    it should "count number of times" in {
+        val mocked = mock[AccountService]
+
+        val customerId = UUID.randomUUID
+
+        (mocked.openDepositAccount _).expects(customerId, *, *).atLeastTwice()
+
+        mocked.openDepositAccount(customerId, UUID.randomUUID(), Dollars(100))
+        mocked.openDepositAccount(customerId, UUID.randomUUID(), Dollars(100))
+    }
 }
