@@ -2,8 +2,9 @@ package mocking
 
 import matchers.UnitSpec
 import com.h2.services.Currency
+import org.scalamock.scalatest.MockFactory
 
-class FunctionMockTest extends UnitSpec {
+class FunctionMockTest extends UnitSpec with MockFactory {
 
     behavior of "Currency's MOcking"
 
@@ -12,8 +13,10 @@ class FunctionMockTest extends UnitSpec {
 
         def getCurrency(criteria: Currency => Boolean): List[Currency] = currency.filter(criteria)
 
-        def criteria: Currency => Boolean = (c: Currency) => c.code === "USD"
+        val mocked = mockFunction[Currency, Boolean]
 
-        getCurrency(criteria) should have size 2
+        mocked.expects(*).anyNumberOfTimes()
+
+        getCurrency(mocked)
     }
 }
